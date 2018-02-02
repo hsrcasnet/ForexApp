@@ -9,7 +9,7 @@ namespace ForexApp.Services
     {
         private static readonly Random Rng = new Random();
 
-        public Task<IEnumerable<QuoteDto>> GetQuotes(string[] pairs)
+        public async Task<IEnumerable<QuoteDto>> GetQuotes(string[] pairs)
         {
             var quoteDtos = new List<QuoteDto>();
             foreach (var symbol in pairs)
@@ -22,7 +22,9 @@ namespace ForexApp.Services
                 quoteDtos.Add(dto);
             }
 
-            return Task.FromResult<IEnumerable<QuoteDto>>(quoteDtos);
+            await Task.Delay(1000);
+
+            return quoteDtos;
         }
     }
 }
