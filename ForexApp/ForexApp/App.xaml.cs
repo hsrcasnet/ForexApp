@@ -1,15 +1,18 @@
 ﻿
-using Xamarin.Forms;
+using ForexApp.Services;
+using ForexApp.ViewModels;
+using ForexApp.Views;
+
+using Prism;
+using Prism.Autofac;
+using Prism.Ioc;
 
 namespace ForexApp
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
-        public App()
+        public App(IPlatformInitializer platformInitializer) : base(platformInitializer)
         {
-            this.InitializeComponent();
-
-            this.MainPage = new Views.MainPage();
         }
 
         protected override void OnStart()
@@ -20,6 +23,22 @@ namespace ForexApp
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+        }
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterSingleton(typeof(IForexServiceConfiguration), typeof(ForexServiceConfiguration));
+            containerRegistry.RegisterSingleton(typeof(IForexService), typeof(ForexService));
+
+            containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(Pages.Main);
+            containerRegistry.RegisterForNavigation<QuoteDetailPage, QuoteDetailViewModel>(Pages.QuoteDetail);
+        }
+
+        protected override void OnInitialized()
+        {
+            this.InitializeComponent();
+
+            this.NavigationService.NavigateAsync(Pages.Main);
         }
 
         protected override void OnResume()

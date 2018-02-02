@@ -1,10 +1,5 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 
 namespace ForexApp.Droid
@@ -19,8 +14,10 @@ namespace ForexApp.Droid
 
             base.OnCreate(bundle);
 
+            var platformInitializer = new AndroidPlatformInitializer(); 
+
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            LoadApplication(new App());
+            this.LoadApplication(new App(platformInitializer));
         }
     }
 }

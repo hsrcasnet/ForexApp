@@ -1,25 +1,29 @@
 ﻿using ForexApp.Model;
 using ForexApp.Services;
+using Prism.Navigation;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+
 using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
 {
-    public class MainViewModel : BindableObject
+    public class MainViewModel : ViewModelBase
     {
         private readonly IForexService forexService;
+        private readonly INavigationService navigationService;
         private string title;
         private string newQuoteSymbol;
         private bool isBusy;
         private bool isRefreshing;
 
-        public MainViewModel(IForexService forexService)
+        public MainViewModel(IForexService forexService, INavigationService navigationService)
         {
             this.forexService = forexService;
+            this.navigationService = navigationService;
 
             this.Title = "Welcome to ForexApp";
             this.Quotes = new ObservableCollection<QuoteViewModel>();
@@ -53,6 +57,11 @@ namespace ForexApp.ViewModels
                                                           await this.LoadData();
                                                           this.IsRefreshing = false;
                                                       });
+
+        public override void OnNavigatingTo(NavigationParameters parameters)
+        {
+            this.LoadData();
+        }
 
         private async Task LoadData()
         {
@@ -168,5 +177,29 @@ namespace ForexApp.ViewModels
         }
 
         public ObservableCollection<QuoteViewModel> Quotes { get; set; }
+
+        public ICommand SelectQuoteCommand => new Command(async () => await this.OnSelectQuote());
+
+        public QuoteViewModel SelectedItem { get; set; }
+
+        private async Task OnSelectQuote()
+        {
+            var navigationParameter = new NavigationParameters();
+            navigationParameter.AddQuoteDetail(this.SelectedItem.Symbol);
+            await this.navigationService.NavigateAsync(Pages.QuoteDetail, navigationParameter);
+        }
+    }
+
+    public static class NavigationParametersExtensions
+    {
+        public static void AddQuoteDetail(this NavigationParameters navigationParameters, string symbol)
+        {
+            navigationParameters.Add("AddQuoteDetail", symbol);
+        }
+
+        public static string GetQuoteDetail(this NavigationParameters navigationParameters)
+        {
+            return navigationParameters["AddQuoteDetail"] as string;
+        }
     }
 }

@@ -1,6 +1,9 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "Prism.Autofac.Forms": "7.0.0.396",
+    "Prism.Forms": "7.0.0.396",
+    "Xam.Plugins.Settings": "3.1.1",
     "Xamarin.Forms": "2.4.0.280"
   },
   "frameworks": {
