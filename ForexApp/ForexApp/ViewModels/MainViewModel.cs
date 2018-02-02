@@ -14,6 +14,8 @@ namespace ForexApp.ViewModels
         private readonly IForexService forexService;
         private string title;
         private string newQuoteSymbol;
+        private bool isBusy;
+        private bool isRefreshing;
 
         public MainViewModel(IForexService forexService)
         {
@@ -36,7 +38,21 @@ namespace ForexApp.ViewModels
             }
         }
 
-        public ICommand RefreshCommand => new Command(async () => await this.LoadData());
+        public ICommand RefreshButtonCommand => new Command(
+                                                    async () =>
+                                                        {
+                                                            this.IsBusy = true;
+                                                            await this.LoadData();
+                                                            this.IsBusy = false;
+                                                        });
+
+        public ICommand RefreshListCommand => new Command(
+                                                  async () =>
+                                                      {
+                                                          this.IsRefreshing = true;
+                                                          await this.LoadData();
+                                                          this.IsRefreshing = false;
+                                                      });
 
         private async Task LoadData()
         {
@@ -49,6 +65,32 @@ namespace ForexApp.ViewModels
             {
                 var pairs = this.Quotes.Select(q => q.Symbol).ToArray();
                 await this.LoadAndUpdateQuotes(pairs);
+            }
+        }
+
+        public bool IsBusy
+        {
+            get
+            {
+                return this.isBusy;
+            }
+            set
+            {
+                this.isBusy = value;
+                this.OnPropertyChanged(nameof(this.IsBusy));
+            }
+        }
+
+        public bool IsRefreshing
+        {
+            get
+            {
+                return this.isRefreshing;
+            }
+            set
+            {
+                this.isRefreshing = value;
+                this.OnPropertyChanged(nameof(this.IsRefreshing));
             }
         }
 
