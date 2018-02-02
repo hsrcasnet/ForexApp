@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
+             xmlns:converters="clr-namespace:ForexApp.Converters;assembly=ForexApp"
+             x:Class="ForexApp.Views.MainPage"
+             Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:StringNullOrEmptyToBoolConverter x:Key="StringNullOrEmptyToBoolConverter" />
+            <DataTemplate x:Key="QuoteItemViewCell">
+                <cells:QuoteItemViewCell/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="0"
+                BackgroundColor="LightBlue"
+                Text="Enter FX pairs below (e.g. CHFEUR or EURCHF)"
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"/>
+
+            <ListView
+                Grid.Row="1"
+                ItemsSource="{Binding Quotes}"
+                ItemTemplate="{StaticResource QuoteItemViewCell}"
+                IsPullToRefreshEnabled="True"
+                RefreshCommand="{Binding RefreshCommand}"
+                />
+
+            <Grid
+                Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Button
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Text="Refresh"
+                    Command="{Binding RefreshCommand}"/>
+                
+                <Entry
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="{Binding NewQuoteSymbol, Mode=TwoWay}"/>
+                <Button
+                    x:Name="AddButton"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Add Symbol"
+                    IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
+                    Command="{Binding AddSymbolCommand}"/>
+                
+                
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 using Xamarin.Forms;
 
 namespace ForexApp
@@ -11,9 +7,9 @@ namespace ForexApp
     {
         public App()
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
-            MainPage = new ForexApp.MainPage();
+            this.MainPage = new Views.MainPage();
         }
 
         protected override void OnStart()
