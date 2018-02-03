@@ -1,6 +1,5 @@
 ﻿using Prism;
 using Prism.Ioc;
-using System;
 
 namespace ForexApp.iOS
 {

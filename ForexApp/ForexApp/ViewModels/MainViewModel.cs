@@ -1,29 +1,39 @@
-﻿using ForexApp.Model;
+﻿using ForexApp.Extensions;
+using ForexApp.Model;
 using ForexApp.Services;
 using Prism.Navigation;
+using Prism.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-
 using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        private readonly IForexSettings forexSettings;
         private readonly IForexService forexService;
         private readonly INavigationService navigationService;
+        private readonly IPageDialogService pageDialogService;
         private string title;
         private string newQuoteSymbol;
         private bool isBusy;
         private bool isRefreshing;
+        private ObservableCollection<QuoteViewModel> quotes;
 
-        public MainViewModel(IForexService forexService, INavigationService navigationService)
+        public MainViewModel(
+            IForexSettings forexSettings,
+            IForexService forexService,
+            INavigationService navigationService,
+            IPageDialogService pageDialogService)
         {
+            this.forexSettings = forexSettings;
             this.forexService = forexService;
             this.navigationService = navigationService;
+            this.pageDialogService = pageDialogService;
 
             this.Title = "Welcome to ForexApp";
             this.Quotes = new ObservableCollection<QuoteViewModel>();
@@ -60,15 +70,15 @@ namespace ForexApp.ViewModels
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
-            this.LoadData();
+            this.RefreshButtonCommand.Execute(null);
         }
 
         private async Task LoadData()
         {
             if (!this.Quotes.Any())
             {
-                var pairs = new[] { "EURCHF", "CHFEUR", "USDCHF", "CHFUSD" };
-                await this.LoadAndUpdateQuotes(pairs);
+                var initialPairs = this.forexSettings.Symbols;
+                await this.LoadAndUpdateQuotes(initialPairs);
             }
             else
             {
@@ -146,10 +156,22 @@ namespace ForexApp.ViewModels
         {
             var symbol = this.NewQuoteSymbol;
 
-            var pairs = new[] { symbol };
-            ICollection<QuoteDto> quoteDtos = (await this.forexService.GetQuotes(pairs)).ToList();
-            var quoteDto = quoteDtos.Single();
-            this.AddOrUpdateQuote(quoteDto);
+            // Get new market data + update UI
+            var quoteDto = await this.forexService.GetQuote(symbol);
+            if (quoteDto != null)
+            {
+                // Add new symbol to settings
+                var symbols = this.forexSettings.Symbols.ToList();
+                symbols.Add(symbol);
+                this.forexSettings.Symbols = symbols.ToArray();
+
+                this.AddOrUpdateQuote(quoteDto);
+                this.OnPropertyChanged(nameof(this.Quotes));
+            }
+            else
+            {
+                await this.pageDialogService.DisplayAlertAsync("Error", $"Failed to add currency pair '{symbol}'.", "OK");
+            }
 
             this.NewQuoteSymbol = null;
         }
@@ -162,7 +184,7 @@ namespace ForexApp.ViewModels
             }
             set
             {
-                this.newQuoteSymbol = value;
+                this.newQuoteSymbol = value?.ToUpperInvariant();
                 this.OnPropertyChanged(nameof(this.NewQuoteSymbol));
                 this.OnPropertyChanged(nameof(this.IsNewQuoteSymbolEnabled));
             }
@@ -176,7 +198,18 @@ namespace ForexApp.ViewModels
             }
         }
 
-        public ObservableCollection<QuoteViewModel> Quotes { get; set; }
+        public ObservableCollection<QuoteViewModel> Quotes
+        {
+            get
+            {
+                return this.quotes;
+            }
+            set
+            {
+                this.quotes = value;
+                this.OnPropertyChanged(nameof(this.Quotes));
+            }
+        }
 
         public ICommand SelectQuoteCommand => new Command(async () => await this.OnSelectQuote());
 
@@ -187,19 +220,6 @@ namespace ForexApp.ViewModels
             var navigationParameter = new NavigationParameters();
             navigationParameter.AddQuoteDetail(this.SelectedItem.Symbol);
             await this.navigationService.NavigateAsync(Pages.QuoteDetail, navigationParameter);
-        }
-    }
-
-    public static class NavigationParametersExtensions
-    {
-        public static void AddQuoteDetail(this NavigationParameters navigationParameters, string symbol)
-        {
-            navigationParameters.Add("AddQuoteDetail", symbol);
-        }
-
-        public static string GetQuoteDetail(this NavigationParameters navigationParameters)
-        {
-            return navigationParameters["AddQuoteDetail"] as string;
         }
     }
 }

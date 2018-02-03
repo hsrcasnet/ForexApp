@@ -1,4 +1,6 @@
 ﻿
+using ForexApp.Extensions;
+
 using Prism.Navigation;
 
 namespace ForexApp.ViewModels

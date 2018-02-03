@@ -39,14 +39,17 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\StringNullOrEmptyToBoolConverter.cs" />
+    <Compile Include="Helpers\ForexSettings.cs" />
     <Compile Include="Helpers\Settings.cs" />
+    <Compile Include="Helpers\IForexSettings.cs" />
     <Compile Include="Pages.cs" />
-    <Compile Include="Services\FakeForexService.cs" />
+    <Compile Include="Services\Fakes\FakeForexService.cs" />
     <Compile Include="Services\ForexService.cs" />
     <Compile Include="Services\ForexServiceConfiguration.cs" />
     <Compile Include="Services\IForexServiceConfiguration.cs" />
     <Compile Include="Services\IForexService.cs" />
     <Compile Include="Model\QuoteDto.cs" />
+    <Compile Include="Extensions\NavigationParametersExtensions.cs" />
     <Compile Include="ViewModels\QuoteDetailViewModel.cs" />
     <Compile Include="ViewModels\QuoteViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

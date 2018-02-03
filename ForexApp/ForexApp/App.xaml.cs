@@ -1,7 +1,11 @@
 ﻿
+using ForexApp.Helpers;
 using ForexApp.Services;
 using ForexApp.ViewModels;
 using ForexApp.Views;
+
+using Plugin.Settings;
+using Plugin.Settings.Abstractions;
 
 using Prism;
 using Prism.Autofac;
@@ -29,6 +33,8 @@ namespace ForexApp
         {
             containerRegistry.RegisterSingleton(typeof(IForexServiceConfiguration), typeof(ForexServiceConfiguration));
             containerRegistry.RegisterSingleton(typeof(IForexService), typeof(ForexService));
+            containerRegistry.RegisterInstance(typeof(ISettings), CrossSettings.Current);
+            containerRegistry.RegisterSingleton(typeof(IForexSettings), typeof(ForexSettings));
 
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(Pages.Main);
             containerRegistry.RegisterForNavigation<QuoteDetailPage, QuoteDetailViewModel>(Pages.QuoteDetail);

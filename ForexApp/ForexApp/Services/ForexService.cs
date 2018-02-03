@@ -1,6 +1,7 @@
 ﻿using ForexApp.Model;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -17,6 +18,12 @@ namespace ForexApp.Services
             this.httpClient = new HttpClient();
         }
 
+        public async Task<QuoteDto> GetQuote(string pair)
+        {
+            var quotes = await this.GetQuotes(new [] { pair });
+            return quotes.SingleOrDefault();
+        }
+
         public async Task<IEnumerable<QuoteDto>> GetQuotes(string[] pairs)
         {
             var apiKey = this.forexServiceConfiguration.ApiKey;
@@ -27,7 +34,7 @@ namespace ForexApp.Services
 
             var jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
             var quoteDtos = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<QuoteDto>>(jsonResponse));
-            return quoteDtos;
+            return quoteDtos ?? Enumerable.Empty<QuoteDto>();
         }
     }
 }

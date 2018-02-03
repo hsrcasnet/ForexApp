@@ -1,13 +1,20 @@
 ﻿using ForexApp.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace ForexApp.Services
+namespace ForexApp.Services.Fakes
 {
     public class FakeForexService : IForexService
     {
         private static readonly Random Rng = new Random();
+
+        public async Task<QuoteDto> GetQuote(string pair)
+        {
+            var quotes = await this.GetQuotes(new[] { pair });
+            return quotes.SingleOrDefault();
+        }
 
         public async Task<IEnumerable<QuoteDto>> GetQuotes(string[] pairs)
         {

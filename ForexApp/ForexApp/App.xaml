@@ -5,7 +5,5 @@
              x:Class="ForexApp.App">
 	<Application.Resources>
 
-		<!-- Application resource dictionary -->
-
 	</Application.Resources>
 </autofac:PrismApplication>
