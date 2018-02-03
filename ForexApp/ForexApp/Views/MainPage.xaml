@@ -2,14 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
-             xmlns:converters="clr-namespace:ForexApp.Converters;assembly=ForexApp"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              x:Class="ForexApp.Views.MainPage"
              Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:StringNullOrEmptyToBoolConverter x:Key="StringNullOrEmptyToBoolConverter" />
             <DataTemplate x:Key="QuoteItemViewCell">
                 <cells:QuoteItemViewCell/>
             </DataTemplate>
@@ -28,13 +26,13 @@
                 </Grid.ColumnDefinitions>
 
                 <Label
-                Grid.Row="0"
-                BackgroundColor="LightBlue"
-                Text="Enter FX pairs below (e.g. CHFEUR or EURCHF)"
-                VerticalOptions="FillAndExpand" 
-                HorizontalOptions="FillAndExpand"
-                HorizontalTextAlignment="Center"
-                VerticalTextAlignment="Center"/>
+                    Grid.Row="0"
+                    Text="ForexApp"
+                    Style="{StaticResource TitleStyle}"
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"/>
 
                 <ListView
                     Grid.Row="1"
@@ -51,7 +49,7 @@
                 </ListView>
 
                 <Grid
-                Grid.Row="2">
+                    Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
@@ -68,18 +66,18 @@
                         Command="{Binding RefreshButtonCommand}"/>
 
                     <Entry
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Text="{Binding NewQuoteSymbol, Mode=TwoWay}"/>
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Placeholder="(e.g. CHFEUR or EURCHF)"
+                        Text="{Binding NewQuoteSymbol, Mode=TwoWay}"/>
+
                     <Button
-                    x:Name="AddButton"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Text="Add Symbol"
-                    IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
-                    Command="{Binding AddSymbolCommand}"/>
-
-
+                        x:Name="AddButton"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="Add Symbol"
+                        IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
+                        Command="{Binding AddSymbolCommand}"/>
                 </Grid>
             </Grid>
 

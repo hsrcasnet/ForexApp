@@ -2,8 +2,44 @@
 <autofac:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:autofac="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
+             xmlns:converters="clr-namespace:ForexApp.Converters;assembly=ForexApp"
+             xmlns:extensions="clr-namespace:ForexApp.Extensions;assembly=ForexApp"
              x:Class="ForexApp.App">
-	<Application.Resources>
+  <Application.Resources>
+    <ResourceDictionary>
+      <!--Colors-->
+      <Color x:Key="PrimaryTextColor">DarkSlateBlue</Color>
 
-	</Application.Resources>
+      <!--Styles-->
+      <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+      </Style>
+
+      <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+      </Style>
+
+      <Style x:Key="TitleStyle" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="BackgroundColor" Value="LightBlue" />
+      </Style>
+
+      <Style TargetType="Button">
+        <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+        <Setter Property="BackgroundColor" Value="LightCyan" />
+      </Style>
+
+      <!--Converters-->
+      <converters:PriceToColorConverter x:Key="PriceToColorConverter"
+                                        PositiveColor="#99ff99"
+                                        NegativeColor="#ff9999"/> 
+      
+     <converters:PriceToImageConverter x:Key="PriceToImageConverter"
+                                        PositiveImage="{extensions:ImageResource ForexApp.Resources.Images.arrow-top-right.png}"
+                                        NegativeImage="{extensions:ImageResource ForexApp.Resources.Images.arrow-bottom-right.png}"/>
+      
+      <converters:SymbolToImageConverter x:Key="SymbolToImageConverter"/>
+    </ResourceDictionary>
+  </Application.Resources>
 </autofac:PrismApplication>

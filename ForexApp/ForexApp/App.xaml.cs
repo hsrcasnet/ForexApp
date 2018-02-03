@@ -1,6 +1,7 @@
 ﻿
 using ForexApp.Helpers;
 using ForexApp.Services;
+using ForexApp.Services.Fakes;
 using ForexApp.ViewModels;
 using ForexApp.Views;
 
@@ -32,7 +33,7 @@ namespace ForexApp
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterSingleton(typeof(IForexServiceConfiguration), typeof(ForexServiceConfiguration));
-            containerRegistry.RegisterSingleton(typeof(IForexService), typeof(ForexService));
+            containerRegistry.RegisterSingleton(typeof(IForexService), typeof(FakeForexService));
             containerRegistry.RegisterInstance(typeof(ISettings), CrossSettings.Current);
             containerRegistry.RegisterSingleton(typeof(IForexSettings), typeof(ForexSettings));
 

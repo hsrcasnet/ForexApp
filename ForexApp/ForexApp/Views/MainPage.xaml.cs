@@ -1,5 +1,6 @@
 ﻿
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace ForexApp.Views
 {
@@ -8,6 +9,7 @@ namespace ForexApp.Views
         public MainPage()
         {
             this.InitializeComponent();
+            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
     }
 }

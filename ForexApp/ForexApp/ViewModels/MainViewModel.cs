@@ -142,12 +142,17 @@ namespace ForexApp.ViewModels
             var vm = this.Quotes.SingleOrDefault(q => q.Symbol == quoteDto.Symbol);
             if (vm == null)
             {
-                this.Quotes.Add(new QuoteViewModel(quoteDto));
+                this.Quotes.Add(new QuoteViewModel(quoteDto, this.OnQuoteDelete));
             }
             else
             {
                 vm.Update(quoteDto);
             }
+        }
+
+        private void OnQuoteDelete(QuoteViewModel quoteViewModel)
+        {
+            this.Quotes.Remove(quoteViewModel);
         }
 
         public ICommand AddSymbolCommand => new Command(async () => await this.AddSymbol(), () => this.IsNewQuoteSymbolEnabled);
