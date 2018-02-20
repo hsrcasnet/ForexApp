@@ -8,3 +8,11 @@ This project exercises the following patterns and features:
 - IoC
 - Plugins for Xamarin
 - Styles
+
+### Prism.Forms support
+Following branch adds Prism on top of Xamarin Forms:
+https://github.com/hsrmobileapps/ForexApp/tree/PrismForms
+
+### Multilingual support
+Following branch supports simple localization of text resources:
+https://github.com/hsrmobileapps/ForexApp/tree/PrismFormsMultilingual
