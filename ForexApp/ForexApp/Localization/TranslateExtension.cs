@@ -19,7 +19,7 @@ namespace ForexApp.Localization
 
         public string Text { get; set; }
 
-        BindingBase IMarkupExtension<BindingBase>.ProvideValue(IServiceProvider serviceProvider)
+        public BindingBase ProvideValue(IServiceProvider serviceProvider)
         {
             var binding = new Binding(nameof(TranslationData.Value))
             {
@@ -29,9 +29,9 @@ namespace ForexApp.Localization
             return binding;
         }
 
-        public object ProvideValue(IServiceProvider serviceProvider)
+        object IMarkupExtension.ProvideValue(IServiceProvider serviceProvider)
         {
-            return ((IMarkupExtension<BindingBase>)this).ProvideValue(serviceProvider);
+            return this.ProvideValue(serviceProvider);
         }
     }
 }
