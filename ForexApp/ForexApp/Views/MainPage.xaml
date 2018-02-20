@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
              xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             x:Class="ForexApp.Views.MainPage"
-             Title="{Binding Title}">
+             xmlns:localization="clr-namespace:ForexApp.Localization;assembly=ForexApp"
+             x:Class="ForexApp.Views.MainPage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -25,14 +25,35 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <Label
-                    Grid.Row="0"
-                    Text="ForexApp"
-                    Style="{StaticResource TitleStyle}"
-                    VerticalOptions="FillAndExpand" 
-                    HorizontalOptions="FillAndExpand"
-                    HorizontalTextAlignment="Center"
-                    VerticalTextAlignment="Center"/>
+                <Grid
+                    Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Text="{localization:Translate MainPageTitle}"
+                        Style="{StaticResource TitleStyle}"
+                        VerticalOptions="FillAndExpand" 
+                        VerticalTextAlignment="Center"
+                        HorizontalOptions="FillAndExpand"
+                        HorizontalTextAlignment="Start"/>
+                    
+                    <Button
+                        Grid.Column="1"
+                        Text="{Binding CurrentLanguage}"
+                        Command="{Binding ChangeCurrentLanguageCommand}"
+                        HorizontalOptions="End"
+                        HeightRequest="48"
+                        WidthRequest="48"
+                        BorderWidth="0"/>
+                </Grid>
 
                 <ListView
                     Grid.Row="1"
@@ -62,20 +83,20 @@
                     <Button
                         Grid.Row="0"
                         Grid.ColumnSpan="2"
-                        Text="Refresh"
+                        Text="{localization:Translate RefreshButtonText}"
                         Command="{Binding RefreshButtonCommand}"/>
 
                     <Entry
                         Grid.Row="1"
                         Grid.Column="0"
-                        Placeholder="(e.g. CHFEUR or EURCHF)"
+                        Placeholder="{localization:Translate AddSymbolPlaceholderText}"
                         Text="{Binding NewQuoteSymbol, Mode=TwoWay}"/>
 
                     <Button
                         x:Name="AddButton"
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="Add Symbol"
+                        Text="{localization:Translate AddSymbolButtonText}"
                         IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
                         Command="{Binding AddSymbolCommand}"/>
                 </Grid>

@@ -1,4 +1,6 @@
-﻿using Prism;
+﻿using ForexApp.Droid.Localization;
+using ForexApp.Localization;
+using Prism;
 using Prism.Ioc;
 
 namespace ForexApp.Droid
@@ -7,6 +9,7 @@ namespace ForexApp.Droid
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<ILocalizer, Localizer>();
         }
     }
 }

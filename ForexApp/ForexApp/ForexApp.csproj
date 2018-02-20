@@ -45,7 +45,18 @@
     <Compile Include="Helpers\ForexSettings.cs" />
     <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\IForexSettings.cs" />
+    <Compile Include="Localization\Languages.cs" />
+    <Compile Include="Localization\TranslateExtension.cs" />
+    <Compile Include="Localization\ILocalizer.cs" />
+    <Compile Include="Localization\ITranslationProvider.cs" />
+    <Compile Include="Localization\ResxTranslationProvider.cs" />
+    <Compile Include="Localization\TranslationData.cs" />
     <Compile Include="Pages.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\Fakes\FakeForexService.cs" />
     <Compile Include="Services\ForexService.cs" />
     <Compile Include="Services\ForexServiceConfiguration.cs" />
@@ -69,6 +80,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings.de.resx" />
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -154,6 +170,7 @@
     <EmbeddedResource Include="Resources\Images\currency-eur.png" />
     <EmbeddedResource Include="Resources\Images\currency-usd.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.5.0.122203\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.5.0.122203\build\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

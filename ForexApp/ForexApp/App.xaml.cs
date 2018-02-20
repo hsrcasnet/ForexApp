@@ -1,16 +1,17 @@
 ﻿
 using ForexApp.Helpers;
+using ForexApp.Localization;
 using ForexApp.Services;
 using ForexApp.Services.Fakes;
 using ForexApp.ViewModels;
 using ForexApp.Views;
-
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 
 using Prism;
 using Prism.Autofac;
 using Prism.Ioc;
+using Strings = ForexApp.Resources.Strings;
 
 namespace ForexApp
 {
@@ -39,7 +40,16 @@ namespace ForexApp
 
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(Pages.Main);
             containerRegistry.RegisterForNavigation<QuoteDetailPage, QuoteDetailViewModel>(Pages.QuoteDetail);
+
+            ResxTranslationProvider.Init(
+                Strings.ResourceManager,
+                () => base.Container.Resolve<ILocalizer>());
+
+            TranslateExtension.Init(
+                () => base.Container.Resolve<ILocalizer>(),
+                () => new ResxTranslationProvider());
         }
+
 
         protected override void OnInitialized()
         {

@@ -33,5 +33,11 @@ namespace ForexApp.Helpers
                 this.settings.AddOrUpdateValue(nameof(this.Symbols), deserialized);
             }
         }
+
+        public string Language
+        {
+            get { return this.settings.GetValueOrDefault(nameof(this.Language), "en"); }
+            set { this.settings.AddOrUpdateValue(nameof(this.Language), value); }
+        }
     }
 }

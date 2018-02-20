@@ -1,55 +1,49 @@
-﻿using ForexApp.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using ForexApp.Extensions;
+using ForexApp.Helpers;
+using ForexApp.Localization;
 using ForexApp.Model;
 using ForexApp.Services;
 using Prism.Navigation;
 using Prism.Services;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase, IDisposable
     {
         private readonly IForexSettings forexSettings;
         private readonly IForexService forexService;
         private readonly INavigationService navigationService;
         private readonly IPageDialogService pageDialogService;
-        private string title;
+        private readonly ILocalizer localizer;
         private string newQuoteSymbol;
         private bool isBusy;
         private bool isRefreshing;
         private ObservableCollection<QuoteViewModel> quotes;
+        private string currentLanguage;
 
         public MainViewModel(
             IForexSettings forexSettings,
             IForexService forexService,
             INavigationService navigationService,
-            IPageDialogService pageDialogService)
+            IPageDialogService pageDialogService,
+            ILocalizer localizer)
         {
             this.forexSettings = forexSettings;
             this.forexService = forexService;
             this.navigationService = navigationService;
             this.pageDialogService = pageDialogService;
+            this.localizer = localizer;
+            this.localizer.CultureInfoChangedEvent += OnCurrentLanguageChanged;
 
-            this.Title = "Welcome to ForexApp";
             this.Quotes = new ObservableCollection<QuoteViewModel>();
-        }
-
-        public string Title
-        {
-            get
-            {
-                return this.title;
-            }
-            set
-            {
-                this.title = value;
-                this.OnPropertyChanged(nameof(this.Title));
-            }
         }
 
         public ICommand RefreshButtonCommand => new Command(
@@ -70,6 +64,11 @@ namespace ForexApp.ViewModels
 
         public override void OnNavigatingTo(NavigationParameters parameters)
         {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                this.localizer.SetCultureInfo(new CultureInfo(this.forexSettings.Language));
+            });
+
             this.RefreshButtonCommand.Execute(null);
         }
 
@@ -225,6 +224,45 @@ namespace ForexApp.ViewModels
             var navigationParameter = new NavigationParameters();
             navigationParameter.AddQuoteDetail(this.SelectedItem.Symbol);
             await this.navigationService.NavigateAsync(Pages.QuoteDetail, navigationParameter);
+        }
+
+        public string CurrentLanguage
+        {
+            get { return this.currentLanguage; }
+            set
+            {
+                this.currentLanguage = value;
+                this.OnPropertyChanged(nameof(this.CurrentLanguage));
+            }
+        }
+
+        public ICommand ChangeCurrentLanguageCommand => new Command(this.ToggleCurrentLanguage);
+
+        private void ToggleCurrentLanguage()
+        {
+            var currentCulture = this.localizer.GetCurrentCulture();
+            CultureInfo newCulture;
+            if (currentCulture.TwoLetterISOLanguageName == Languages.CultureInfoEnglish.TwoLetterISOLanguageName)
+            {
+                newCulture = Languages.CultureInfoGerman;
+            }
+            else
+            {
+                newCulture = Languages.CultureInfoEnglish;
+            }
+
+            this.localizer.SetCultureInfo(newCulture);
+            this.forexSettings.Language = newCulture.TwoLetterISOLanguageName;
+        }
+
+        private void OnCurrentLanguageChanged(object sender, CultureInfoChangedEventArgs e)
+        {
+            this.CurrentLanguage = e.CultureInfo.TwoLetterISOLanguageName;
+        }
+
+        public void Dispose()
+        {
+            this.localizer.CultureInfoChangedEvent -= this.OnCurrentLanguageChanged;
         }
     }
 }

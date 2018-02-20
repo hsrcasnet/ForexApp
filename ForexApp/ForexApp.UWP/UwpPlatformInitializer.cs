@@ -1,4 +1,6 @@
-﻿using Prism;
+﻿using ForexApp.Localization;
+using ForexApp.UWP.Localization;
+using Prism;
 using Prism.Ioc;
 
 namespace ForexApp.UWP
@@ -7,6 +9,7 @@ namespace ForexApp.UWP
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<ILocalizer, Localizer>();
         }
     }
 }
