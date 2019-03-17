@@ -10,7 +10,6 @@
 
 namespace ForexApp.Resources {
     using System;
-    using System.Reflection;
     
     
     /// <summary>
@@ -23,7 +22,7 @@ namespace ForexApp.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Strings {
+    public class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -37,10 +36,10 @@ namespace ForexApp.Resources {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ForexApp.Resources.Strings", typeof(Strings).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ForexApp.Resources.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -52,7 +51,7 @@ namespace ForexApp.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -64,7 +63,7 @@ namespace ForexApp.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Add Symbol.
         /// </summary>
-        internal static string AddSymbolButtonText {
+        public static string AddSymbolButtonText {
             get {
                 return ResourceManager.GetString("AddSymbolButtonText", resourceCulture);
             }
@@ -73,7 +72,7 @@ namespace ForexApp.Resources {
         /// <summary>
         ///   Looks up a localized string similar to (e.g. CHFEUR or EURCHF).
         /// </summary>
-        internal static string AddSymbolPlaceholderText {
+        public static string AddSymbolPlaceholderText {
             get {
                 return ResourceManager.GetString("AddSymbolPlaceholderText", resourceCulture);
             }
@@ -82,7 +81,7 @@ namespace ForexApp.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Welcome to ForexApp.
         /// </summary>
-        internal static string MainPageTitle {
+        public static string MainPageTitle {
             get {
                 return ResourceManager.GetString("MainPageTitle", resourceCulture);
             }
@@ -91,7 +90,7 @@ namespace ForexApp.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
-        internal static string RefreshButtonText {
+        public static string RefreshButtonText {
             get {
                 return ResourceManager.GetString("RefreshButtonText", resourceCulture);
             }

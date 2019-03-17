@@ -62,7 +62,7 @@ namespace ForexApp.ViewModels
                                                           this.IsRefreshing = false;
                                                       });
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             Device.BeginInvokeOnMainThread(() =>
             {
