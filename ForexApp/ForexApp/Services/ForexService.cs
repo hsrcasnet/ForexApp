@@ -1,8 +1,8 @@
-﻿using ForexApp.Model;
-using Newtonsoft.Json;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using ForexApp.Model;
+using Newtonsoft.Json;
 
 namespace ForexApp.Services
 {

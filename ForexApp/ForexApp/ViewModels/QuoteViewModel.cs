@@ -10,7 +10,7 @@ namespace ForexApp.ViewModels
 
         public QuoteViewModel(QuoteDto quoteDto)
         {
-           this.Update(quoteDto);
+            this.Update(quoteDto);
         }
 
         public string Symbol

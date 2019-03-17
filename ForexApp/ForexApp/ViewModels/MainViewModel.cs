@@ -1,10 +1,10 @@
-﻿using ForexApp.Model;
-using ForexApp.Services;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ForexApp.Model;
+using ForexApp.Services;
 using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
