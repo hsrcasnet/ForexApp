@@ -6,8 +6,7 @@
         {
             this.InitializeComponent();
 
-            var platformInitializer = new UwpPlatformInitializer();
-            this.LoadApplication(new ForexApp.App(platformInitializer));
+            this.LoadApplication(new ForexApp.App(new UwpPlatformInitializer()));
         }
     }
 }

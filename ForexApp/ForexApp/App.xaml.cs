@@ -32,11 +32,13 @@ namespace ForexApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // Register services
             containerRegistry.RegisterSingleton(typeof(IForexServiceConfiguration), typeof(ForexServiceConfiguration));
             containerRegistry.RegisterSingleton(typeof(IForexService), typeof(FakeForexService));
             containerRegistry.RegisterInstance(typeof(ISettings), CrossSettings.Current);
             containerRegistry.RegisterSingleton(typeof(IForexSettings), typeof(ForexSettings));
 
+            // Register views and view models
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(Pages.Main);
             containerRegistry.RegisterForNavigation<QuoteDetailPage, QuoteDetailViewModel>(Pages.QuoteDetail);
         }

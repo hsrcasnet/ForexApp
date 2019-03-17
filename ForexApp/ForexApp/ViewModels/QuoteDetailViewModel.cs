@@ -13,7 +13,7 @@ namespace ForexApp.ViewModels
         {
         }
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             this.Symbol = parameters.GetQuoteDetail();
         }

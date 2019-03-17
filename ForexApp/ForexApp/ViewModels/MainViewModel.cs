@@ -1,13 +1,13 @@
-﻿using ForexApp.Extensions;
-using ForexApp.Model;
-using ForexApp.Services;
-using Prism.Navigation;
-using Prism.Services;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using ForexApp.Extensions;
+using ForexApp.Model;
+using ForexApp.Services;
+using Prism.Navigation;
+using Prism.Services;
 using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
@@ -68,7 +68,7 @@ namespace ForexApp.ViewModels
                                                           this.IsRefreshing = false;
                                                       });
 
-        public override void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(INavigationParameters parameters)
         {
             this.RefreshButtonCommand.Execute(null);
         }
