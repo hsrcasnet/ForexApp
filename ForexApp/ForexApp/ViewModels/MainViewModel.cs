@@ -27,10 +27,7 @@ namespace ForexApp.ViewModels
 
         public string Title
         {
-            get
-            {
-                return this.title;
-            }
+            get => this.title;
             set
             {
                 this.title = value;
@@ -39,26 +36,26 @@ namespace ForexApp.ViewModels
         }
 
         public ICommand RefreshButtonCommand => new Command(
-                                                    async () =>
-                                                        {
-                                                            this.IsBusy = true;
-                                                            await this.LoadData();
-                                                            this.IsBusy = false;
-                                                        });
+            async () =>
+                {
+                    this.IsBusy = true;
+                    await this.LoadData();
+                    this.IsBusy = false;
+                });
 
         public ICommand RefreshListCommand => new Command(
-                                                  async () =>
-                                                      {
-                                                          this.IsRefreshing = true;
-                                                          await this.LoadData();
-                                                          this.IsRefreshing = false;
-                                                      });
+            async () =>
+                {
+                    this.IsRefreshing = true;
+                    await this.LoadData();
+                    this.IsRefreshing = false;
+                });
 
         private async Task LoadData()
         {
             if (!this.Quotes.Any())
             {
-                var pairs = new[] { "EURCHF", "CHFEUR", "USDCHF", "CHFUSD" };
+                var pairs = new[] { "EUR_CHF", "CHF_EUR", };
                 await this.LoadAndUpdateQuotes(pairs);
             }
             else

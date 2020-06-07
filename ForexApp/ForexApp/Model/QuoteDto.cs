@@ -1,15 +1,28 @@
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 namespace ForexApp.Model
 {
     public class QuoteDto
     {
-        //JSON String: {"symbol":"EURUSD","price":1.24308,"bid":1.24288,"ask":1.24328,"timestamp":1517056850}
+        //JSON String: "id": "EUR_CHF", "val": 1.08765, "to": "CHF", "fr": "EUR"
 
+        [JsonProperty("id")]
         public string Symbol { get; set; }
 
+        [JsonProperty("val")]
         public decimal Price { get; set; }
+    }
 
-        public decimal Bid { get; set; }
+    internal class ConvertResponseDto
+    {
+        public ResultsDto Results { get; set; }
+    }
 
-        public decimal Ask { get; set; }
+    internal class ResultsDto
+    {
+        [JsonExtensionData]
+        public IDictionary<string, JToken> CurrencyList { get; set; }
     }
 }

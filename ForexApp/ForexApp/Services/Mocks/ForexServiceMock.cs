@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ForexApp.Services
 {
-    public class FakeForexService : IForexService
+    public class ForexServiceMock : IForexService
     {
         private static readonly Random Rng = new Random();
 

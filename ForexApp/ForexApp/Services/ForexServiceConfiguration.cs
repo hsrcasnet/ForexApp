@@ -6,7 +6,7 @@ namespace ForexApp.Services
         {
             get
             {
-                return "OLJvKkKByrQEOJoWBmIdlaHfEOaTAyOw";
+                return "a76658b837141f3c23fa";
             }
         }
     }

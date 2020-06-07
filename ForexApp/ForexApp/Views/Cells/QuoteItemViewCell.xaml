@@ -1,21 +1,24 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ForexApp.Views.Cells.QuoteItemViewCell">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ViewCell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ForexApp.Views.Cells.QuoteItemViewCell">
     <ViewCell.View>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Label 
+            <Label
                 Grid.Column="0"
-                Text="{Binding Symbol}"/>
+                Text="{Binding Symbol}"
+                VerticalOptions="Center" />
 
-            <Label 
+            <Label
                 Grid.Column="1"
-                Text="{Binding Price, StringFormat='{0:0.00}'}"/>
+                Text="{Binding Price, StringFormat='{0:0.00}'}"
+                VerticalOptions="Center" />
         </Grid>
     </ViewCell.View>
 </ViewCell>
