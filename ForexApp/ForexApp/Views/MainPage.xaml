@@ -68,7 +68,7 @@
                     <Entry
                         Grid.Row="1"
                         Grid.Column="0"
-                        Placeholder="(e.g. CHFEUR or EURCHF)"
+                        Placeholder="(e.g. CHF_EUR or EUR_CHF)"
                         Text="{Binding NewQuoteSymbol, Mode=TwoWay}" />
 
                     <Button
