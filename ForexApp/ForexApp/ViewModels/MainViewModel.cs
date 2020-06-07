@@ -23,6 +23,7 @@ namespace ForexApp.ViewModels
         private bool isBusy;
         private bool isRefreshing;
         private ObservableCollection<QuoteViewModel> quotes;
+        private ICommand selectQuoteCommand;
 
         public MainViewModel(
             IForexSettings forexSettings,
@@ -216,7 +217,12 @@ namespace ForexApp.ViewModels
             }
         }
 
-        public ICommand SelectQuoteCommand => new Command(async () => await this.OnSelectQuote());
+        //public ICommand SelectQuoteCommand => new Command(async () => await this.OnSelectQuote());
+
+        public ICommand SelectQuoteCommand
+        {
+            get { return this.selectQuoteCommand ?? (this.selectQuoteCommand = new Command(async () => await this.OnSelectQuote())); }
+        }
 
         public QuoteViewModel SelectedItem { get; set; }
 
