@@ -29,7 +29,7 @@ namespace ForexApp.Services
 
             // Read request payload and transform JSON to DTO object
             var jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-            var rootObject = await Task.Run(() => JsonConvert.DeserializeObject<ConvertResponseDto>(jsonResponse));
+            var rootObject = JsonConvert.DeserializeObject<ConvertResponseDto>(jsonResponse);
 
             var quoteDtos = rootObject.Results.CurrencyList.Select(c =>
             {

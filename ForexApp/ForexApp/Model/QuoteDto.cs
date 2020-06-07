@@ -3,11 +3,11 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace ForexApp.Model
-{
+{ 
+    //JSON String: "id": "EUR_CHF", "val": 1.08765, "to": "CHF", "fr": "EUR"
+
     public class QuoteDto
     {
-        //JSON String: "id": "EUR_CHF", "val": 1.08765, "to": "CHF", "fr": "EUR"
-
         [JsonProperty("id")]
         public string Symbol { get; set; }
 
