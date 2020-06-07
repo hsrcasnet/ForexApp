@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
-             xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             x:Class="ForexApp.Views.MainPage"
-             Title="{Binding Title}">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
+    xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    x:Class="ForexApp.Views.MainPage"
+    Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="QuoteItemViewCell">
-                <cells:QuoteItemViewCell/>
+                <cells:QuoteItemViewCell />
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -17,22 +18,22 @@
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
                 <Label
                     Grid.Row="0"
                     Text="ForexApp"
                     Style="{StaticResource TitleStyle}"
-                    VerticalOptions="FillAndExpand" 
+                    VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
                     HorizontalTextAlignment="Center"
-                    VerticalTextAlignment="Center"/>
+                    VerticalTextAlignment="Center" />
 
                 <ListView
                     Grid.Row="1"
@@ -44,32 +45,31 @@
                     SelectedItem="{Binding SelectedItem}">
 
                     <ListView.Behaviors>
-                        <behaviors:EventToCommandBehavior Command="{Binding SelectQuoteCommand}" EventName="ItemTapped"/>
+                        <behaviors:EventToCommandBehavior Command="{Binding SelectQuoteCommand}" EventName="ItemTapped" />
                     </ListView.Behaviors>
                 </ListView>
 
-                <Grid
-                    Grid.Row="2">
+                <Grid Grid.Row="2" Padding="6">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <Button
                         Grid.Row="0"
                         Grid.ColumnSpan="2"
                         Text="Refresh"
-                        Command="{Binding RefreshButtonCommand}"/>
+                        Command="{Binding RefreshButtonCommand}" />
 
                     <Entry
                         Grid.Row="1"
                         Grid.Column="0"
                         Placeholder="(e.g. CHFEUR or EURCHF)"
-                        Text="{Binding NewQuoteSymbol, Mode=TwoWay}"/>
+                        Text="{Binding NewQuoteSymbol, Mode=TwoWay}" />
 
                     <Button
                         x:Name="AddButton"
@@ -77,21 +77,22 @@
                         Grid.Column="1"
                         Text="Add Symbol"
                         IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
-                        Command="{Binding AddSymbolCommand}"/>
+                        Command="{Binding AddSymbolCommand}" />
                 </Grid>
             </Grid>
 
-            <ActivityIndicator 
+            <ActivityIndicator
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand"
                 Color="Black"
-                IsVisible="{Binding IsBusy}" 
-                IsRunning="{Binding IsBusy}" >
+                IsVisible="{Binding IsBusy}"
+                IsRunning="{Binding IsBusy}">
                 <ActivityIndicator.WidthRequest>
-                    <OnPlatform x:TypeArguments="x:Double" 
-                                    iOS="24" 
-                                    Android="100"
-                                    WinPhone="400"/>
+                    <OnPlatform
+                        x:TypeArguments="x:Double"
+                        iOS="24"
+                        Android="100"
+                        WinPhone="400" />
                 </ActivityIndicator.WidthRequest>
             </ActivityIndicator>
 

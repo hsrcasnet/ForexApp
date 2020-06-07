@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ForexApp.Services.Fakes
 {
-    public class FakeForexService : IForexService
+    public class ForexServiceMock : IForexService
     {
         private static readonly Random Rng = new Random();
 
@@ -24,7 +24,7 @@ namespace ForexApp.Services.Fakes
                 var dto = new QuoteDto
                 {
                     Symbol = symbol,
-                    Price = (decimal)Rng.NextDouble() * Rng.Next(1, 100),
+                    Price = (decimal)Rng.NextDouble() * Rng.Next(1, 10),
                 };
                 quoteDtos.Add(dto);
             }

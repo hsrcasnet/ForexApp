@@ -26,15 +26,23 @@ namespace ForexApp.Services
 
         public async Task<IEnumerable<QuoteDto>> GetQuotes(string[] pairs)
         {
+            // Send API request
             var apiKey = this.forexServiceConfiguration.ApiKey;
             var pairsString = string.Join(",", pairs);
-            var uri = $"https://forex.1forge.com/1.0.3/quotes?pairs={pairsString}&api_key={apiKey}";
+            var uri = $"https://free.currconv.com/api/v7/convert?q={pairsString}&apiKey={apiKey}";
             var httpResponseMessage = await this.httpClient.GetAsync(uri);
             httpResponseMessage.EnsureSuccessStatusCode();
 
+            // Read request payload and transform JSON to DTO object
             var jsonResponse = await httpResponseMessage.Content.ReadAsStringAsync();
-            var quoteDtos = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<QuoteDto>>(jsonResponse));
-            return quoteDtos ?? Enumerable.Empty<QuoteDto>();
+            var rootObject = JsonConvert.DeserializeObject<ConvertResponseDto>(jsonResponse);
+
+            var quoteDtos = rootObject.Results.CurrencyList.Select(c =>
+            {
+                var quoteDto = c.Value.ToObject<QuoteDto>();
+                return quoteDto;
+            }).ToList();
+            return quoteDtos;
         }
     }
 }

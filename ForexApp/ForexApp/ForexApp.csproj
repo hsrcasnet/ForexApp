@@ -8,6 +8,7 @@
   <ItemGroup>
     <None Remove="Resources\Images\arrow-bottom-right.png" />
     <None Remove="Resources\Images\arrow-top-right.png" />
+    <None Remove="Resources\Images\currency-chf.png" />
     <None Remove="Resources\Images\currency-cny.png" />
     <None Remove="Resources\Images\currency-eur.png" />
     <None Remove="Resources\Images\currency-usd.png" />
@@ -16,6 +17,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\arrow-bottom-right.png" />
     <EmbeddedResource Include="Resources\Images\arrow-top-right.png" />
+    <EmbeddedResource Include="Resources\Images\currency-chf.png" />
     <EmbeddedResource Include="Resources\Images\currency-cny.png" />
     <EmbeddedResource Include="Resources\Images\currency-eur.png" />
     <EmbeddedResource Include="Resources\Images\currency-usd.png" />
