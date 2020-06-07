@@ -35,7 +35,7 @@ namespace ForexApp
         {
             // Register services
             containerRegistry.RegisterSingleton(typeof(IForexServiceConfiguration), typeof(ForexServiceConfiguration));
-            containerRegistry.RegisterSingleton(typeof(IForexService), typeof(FakeForexService));
+            containerRegistry.RegisterSingleton(typeof(IForexService), typeof(ForexServiceMock));
             containerRegistry.RegisterInstance(typeof(ISettings), CrossSettings.Current);
             containerRegistry.RegisterSingleton(typeof(IForexSettings), typeof(ForexSettings));
 

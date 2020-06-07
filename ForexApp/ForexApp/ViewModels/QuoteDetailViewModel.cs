@@ -20,10 +20,7 @@ namespace ForexApp.ViewModels
 
         public string Symbol
         {
-            get
-            {
-                return this.symbol;
-            }
+            get => this.symbol;
             private set
             {
                 this.symbol = value;

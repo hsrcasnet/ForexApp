@@ -12,7 +12,7 @@ namespace ForexApp.Helpers
             this.settings = settings;
             if (this.Symbols == null)
             {
-                this.Symbols = new[] { "EURCHF", "CHFEUR", "USDCHF", "CHFUSD" };
+                this.Symbols = new[] { "EUR_CHF", "CHF_EUR" };
             }
         }
 

@@ -28,6 +28,7 @@ namespace ForexApp.ViewModels
         private bool isRefreshing;
         private ObservableCollection<QuoteViewModel> quotes;
         private string currentLanguage;
+        private ICommand selectQuoteCommand;
 
         public MainViewModel(
             IForexSettings forexSettings,
@@ -47,20 +48,20 @@ namespace ForexApp.ViewModels
         }
 
         public ICommand RefreshButtonCommand => new Command(
-                                                    async () =>
-                                                        {
-                                                            this.IsBusy = true;
-                                                            await this.LoadData();
-                                                            this.IsBusy = false;
-                                                        });
+            async () =>
+                {
+                    this.IsBusy = true;
+                    await this.LoadData();
+                    this.IsBusy = false;
+                });
 
         public ICommand RefreshListCommand => new Command(
-                                                  async () =>
-                                                      {
-                                                          this.IsRefreshing = true;
-                                                          await this.LoadData();
-                                                          this.IsRefreshing = false;
-                                                      });
+            async () =>
+                {
+                    this.IsRefreshing = true;
+                    await this.LoadData();
+                    this.IsRefreshing = false;
+                });
 
         public override void OnNavigatingTo(INavigationParameters parameters)
         {
@@ -88,10 +89,7 @@ namespace ForexApp.ViewModels
 
         public bool IsBusy
         {
-            get
-            {
-                return this.isBusy;
-            }
+            get => this.isBusy;
             set
             {
                 this.isBusy = value;
@@ -101,10 +99,7 @@ namespace ForexApp.ViewModels
 
         public bool IsRefreshing
         {
-            get
-            {
-                return this.isRefreshing;
-            }
+            get => this.isRefreshing;
             set
             {
                 this.isRefreshing = value;
@@ -182,10 +177,7 @@ namespace ForexApp.ViewModels
 
         public string NewQuoteSymbol
         {
-            get
-            {
-                return this.newQuoteSymbol;
-            }
+            get => this.newQuoteSymbol;
             set
             {
                 this.newQuoteSymbol = value?.ToUpperInvariant();
@@ -204,10 +196,7 @@ namespace ForexApp.ViewModels
 
         public ObservableCollection<QuoteViewModel> Quotes
         {
-            get
-            {
-                return this.quotes;
-            }
+            get => this.quotes;
             set
             {
                 this.quotes = value;
@@ -215,7 +204,12 @@ namespace ForexApp.ViewModels
             }
         }
 
-        public ICommand SelectQuoteCommand => new Command(async () => await this.OnSelectQuote());
+        //public ICommand SelectQuoteCommand => new Command(async () => await this.OnSelectQuote());
+
+        public ICommand SelectQuoteCommand
+        {
+            get { return this.selectQuoteCommand ?? (this.selectQuoteCommand = new Command(async () => await this.OnSelectQuote())); }
+        }
 
         public QuoteViewModel SelectedItem { get; set; }
 

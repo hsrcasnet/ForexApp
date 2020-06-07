@@ -121,7 +121,7 @@
     <value>Add Symbol</value>
   </data>
   <data name="AddSymbolPlaceholderText" xml:space="preserve">
-    <value>(e.g. CHFEUR or EURCHF)</value>
+    <value>(e.g. CHF_EUR or EUR_CHF)</value>
   </data>
   <data name="MainPageTitle" xml:space="preserve">
     <value>Welcome to ForexApp</value>
