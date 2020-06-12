@@ -53,16 +53,18 @@ namespace ForexApp.ViewModels
 
         private async Task LoadData()
         {
+            string[] pairs;
+
             if (!this.Quotes.Any())
             {
-                var pairs = new[] { "EUR_CHF", "CHF_EUR", };
-                await this.LoadAndUpdateQuotes(pairs);
+                pairs = new[] { "EUR_CHF", "CHF_EUR", };
             }
             else
             {
-                var pairs = this.Quotes.Select(q => q.Symbol).ToArray();
-                await this.LoadAndUpdateQuotes(pairs);
+                pairs = this.Quotes.Select(q => q.Symbol).ToArray();
             }
+
+            await this.LoadAndUpdateQuotes(pairs);
         }
 
         public bool IsBusy
