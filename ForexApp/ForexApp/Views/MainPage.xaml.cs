@@ -10,8 +10,9 @@ namespace ForexApp.Views
         public MainPage()
         {
             this.InitializeComponent();
-            this.BindingContext = new MainViewModel(new ForexService(new ForexServiceConfiguration()));
-            //this.BindingContext = new MainViewModel(new FakeForexService());
+            //var forexService = new ForexServiceMock();
+            var forexService = new ForexService(new ForexServiceConfiguration());
+            this.BindingContext = new MainViewModel(forexService);
         }
     }
 }
