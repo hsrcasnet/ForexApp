@@ -1,4 +1,4 @@
-﻿
+﻿using ForexApp.Views;
 using Xamarin.Forms;
 
 namespace ForexApp
@@ -9,7 +9,7 @@ namespace ForexApp
         {
             this.InitializeComponent();
 
-            this.MainPage = new Views.MainPage();
+            this.MainPage = new MainPage();
         }
 
         protected override void OnStart()
