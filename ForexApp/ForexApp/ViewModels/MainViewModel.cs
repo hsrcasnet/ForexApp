@@ -9,10 +9,9 @@ using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
 {
-    public class MainViewModel : BindableObject
+    public class MainViewModel : ViewModelBase
     {
         private readonly IForexService forexService;
-        private string title;
         private string newQuoteSymbol;
         private bool isBusy;
         private bool isRefreshing;
@@ -23,16 +22,6 @@ namespace ForexApp.ViewModels
 
             this.Title = "Welcome to ForexApp";
             this.Quotes = new ObservableCollection<QuoteViewModel>();
-        }
-
-        public string Title
-        {
-            get => this.title;
-            set
-            {
-                this.title = value;
-                this.OnPropertyChanged(nameof(this.Title));
-            }
         }
 
         public ICommand RefreshButtonCommand => new Command(
@@ -69,10 +58,7 @@ namespace ForexApp.ViewModels
 
         public bool IsBusy
         {
-            get
-            {
-                return this.isBusy;
-            }
+            get => this.isBusy;
             set
             {
                 this.isBusy = value;
@@ -82,10 +68,7 @@ namespace ForexApp.ViewModels
 
         public bool IsRefreshing
         {
-            get
-            {
-                return this.isRefreshing;
-            }
+            get => this.isRefreshing;
             set
             {
                 this.isRefreshing = value;
@@ -146,10 +129,7 @@ namespace ForexApp.ViewModels
 
         public string NewQuoteSymbol
         {
-            get
-            {
-                return this.newQuoteSymbol;
-            }
+            get => this.newQuoteSymbol;
             set
             {
                 this.newQuoteSymbol = value;
@@ -166,6 +146,6 @@ namespace ForexApp.ViewModels
             }
         }
 
-        public ObservableCollection<QuoteViewModel> Quotes { get; set; }
+        public ObservableCollection<QuoteViewModel> Quotes { get; private set; }
     }
 }

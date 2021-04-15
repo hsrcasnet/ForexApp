@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    x:Class="ForexApp.Views.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
     xmlns:converters="clr-namespace:ForexApp.Converters;assembly=ForexApp"
-    x:Class="ForexApp.Views.MainPage"
     Title="{Binding Title}">
 
     <ContentPage.Resources>
@@ -15,83 +15,82 @@
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <ContentPage.Content>
+
+    <Grid>
         <Grid>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Row="0"
+                BackgroundColor="LightBlue"
+                FontAttributes="Bold"
+                Text="Enter FX pairs below (e.g. CHF_EUR or EUR_CHF)"
+                HorizontalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                VerticalOptions="FillAndExpand"
+                VerticalTextAlignment="Center" />
+
+            <ListView
+                Grid.Row="1"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemTemplate="{StaticResource QuoteItemViewCell}"
+                ItemsSource="{Binding Quotes}"
+                RefreshCommand="{Binding RefreshListCommand}" />
+
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-                <Label
+                <Button
                     Grid.Row="0"
-                    BackgroundColor="LightBlue"
-                    Text="Enter FX pairs below (e.g. CHF_EUR or EUR_CHF)"
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand"
-                    HorizontalTextAlignment="Center"
-                    VerticalTextAlignment="Center"
-                    FontAttributes="Bold" />
+                    Grid.ColumnSpan="2"
+                    Command="{Binding RefreshButtonCommand}"
+                    Text="Refresh" />
 
-                <ListView
+                <Entry
                     Grid.Row="1"
-                    ItemsSource="{Binding Quotes}"
-                    ItemTemplate="{StaticResource QuoteItemViewCell}"
-                    IsPullToRefreshEnabled="True"
-                    IsRefreshing="{Binding IsRefreshing}"
-                    RefreshCommand="{Binding RefreshListCommand}" />
-
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <Button
-                        Grid.Row="0"
-                        Grid.ColumnSpan="2"
-                        Text="Refresh"
-                        Command="{Binding RefreshButtonCommand}" />
-
-                    <Entry
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Text="{Binding NewQuoteSymbol, Mode=TwoWay}" />
-                    <Button
-                        x:Name="AddButton"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Text="Add Symbol"
-                        IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
-                        Command="{Binding AddSymbolCommand}" />
+                    Grid.Column="0"
+                    Text="{Binding NewQuoteSymbol, Mode=TwoWay}" />
+                <Button
+                    x:Name="AddButton"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Command="{Binding AddSymbolCommand}"
+                    IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
+                    Text="Add Symbol" />
 
 
-                </Grid>
             </Grid>
-
-            <ActivityIndicator
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Color="Black"
-                IsVisible="{Binding IsBusy}"
-                IsRunning="{Binding IsBusy}">
-                <ActivityIndicator.WidthRequest>
-                    <OnPlatform
-                        x:TypeArguments="x:Double"
-                        iOS="24"
-                        Android="100"
-                        WinPhone="400" />
-                </ActivityIndicator.WidthRequest>
-            </ActivityIndicator>
-
         </Grid>
-    </ContentPage.Content>
+
+        <ActivityIndicator
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            Color="Black"
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <ActivityIndicator.WidthRequest>
+                <OnPlatform
+                    x:TypeArguments="x:Double"
+                    Android="100"
+                    WinPhone="400"
+                    iOS="24" />
+            </ActivityIndicator.WidthRequest>
+        </ActivityIndicator>
+
+    </Grid>
 </ContentPage>

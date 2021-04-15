@@ -1,9 +1,8 @@
 using ForexApp.Model;
-using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
 {
-    public class QuoteViewModel : BindableObject
+    public class QuoteViewModel : ViewModelBase
     {
         private decimal price;
         private string symbol;
@@ -15,10 +14,7 @@ namespace ForexApp.ViewModels
 
         public string Symbol
         {
-            get
-            {
-                return this.symbol;
-            }
+            get => this.symbol;
             set
             {
                 this.symbol = value;
@@ -28,10 +24,7 @@ namespace ForexApp.ViewModels
 
         public decimal Price
         {
-            get
-            {
-                return this.price;
-            }
+            get => this.price;
             set
             {
                 this.price = value;
