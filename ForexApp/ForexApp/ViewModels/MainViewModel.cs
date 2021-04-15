@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -78,9 +79,17 @@ namespace ForexApp.ViewModels
 
         private async Task LoadAndUpdateQuotes(string[] pairs)
         {
-            ICollection<QuoteDto> quotes = (await this.forexService.GetQuotes(pairs)).ToList();
+            try
+            {
+                ICollection<QuoteDto> quotes = (await this.forexService.GetQuotes(pairs)).ToList();
 
-            this.UpdateQuotes(quotes);
+                this.UpdateQuotes(quotes);
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log exception here
+                // TODO: Inform user about the error
+            }
         }
 
         private void UpdateQuotes(ICollection<QuoteDto> quotes)
@@ -96,8 +105,6 @@ namespace ForexApp.ViewModels
             {
                 this.Quotes.Remove(quoteViewModel);
             }
-
-            this.Quotes = new ObservableCollection<QuoteViewModel>(this.Quotes.OrderBy(q => q.Symbol));
         }
 
         private void AddOrUpdateQuote(QuoteDto quoteDto)
@@ -113,16 +120,33 @@ namespace ForexApp.ViewModels
             }
         }
 
-        public ICommand AddSymbolCommand => new Command(async () => await this.AddSymbol(), () => this.IsNewQuoteSymbolEnabled);
+        public ICommand AddSymbolCommand => new Command(execute: async () => await this.AddSymbol(), () => this.IsNewQuoteSymbolEnabled);
 
         private async Task AddSymbol()
         {
-            var symbol = this.NewQuoteSymbol;
+            try
+            {
+                var symbol = this.NewQuoteSymbol;
+                var pairs = new[] { symbol };
+                var quoteDtos = (await this.forexService.GetQuotes(pairs)).ToList();
 
-            var pairs = new[] { symbol };
-            var quoteDtos = (await this.forexService.GetQuotes(pairs)).ToList();
-            var quoteDto = quoteDtos.Single();
-            this.AddOrUpdateQuote(quoteDto);
+                if (quoteDtos.Count == 0)
+                {
+                    // TODO: Inform user that the result was empty
+                }
+                else
+                {
+                    foreach (var quoteDto in quoteDtos)
+                    {
+                        this.AddOrUpdateQuote(quoteDto);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO: Log exception here
+                // TODO: Inform user about the error
+            }
 
             this.NewQuoteSymbol = null;
         }
