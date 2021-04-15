@@ -120,7 +120,7 @@ namespace ForexApp.ViewModels
             var symbol = this.NewQuoteSymbol;
 
             var pairs = new[] { symbol };
-            ICollection<QuoteDto> quoteDtos = (await this.forexService.GetQuotes(pairs)).ToList();
+            var quoteDtos = (await this.forexService.GetQuotes(pairs)).ToList();
             var quoteDto = quoteDtos.Single();
             this.AddOrUpdateQuote(quoteDto);
 
