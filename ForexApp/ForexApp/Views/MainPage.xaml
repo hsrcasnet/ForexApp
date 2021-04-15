@@ -72,8 +72,6 @@
                     Command="{Binding AddSymbolCommand}"
                     IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
                     Text="Add Symbol" />
-
-
             </Grid>
         </Grid>
 
@@ -91,6 +89,5 @@
                     iOS="24" />
             </ActivityIndicator.WidthRequest>
         </ActivityIndicator>
-
     </Grid>
 </ContentPage>
