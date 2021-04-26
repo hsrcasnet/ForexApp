@@ -13,9 +13,5 @@ namespace ForexApp.ViewModels
         public virtual void OnNavigatedTo(INavigationParameters parameters)
         {
         }
-
-        public virtual void OnNavigatingTo(INavigationParameters parameters)
-        {
-        }
     }
 }

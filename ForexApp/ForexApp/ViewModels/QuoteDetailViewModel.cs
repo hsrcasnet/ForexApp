@@ -1,5 +1,4 @@
-﻿
-using ForexApp.Extensions;
+﻿using ForexApp.Extensions;
 
 using Prism.Navigation;
 
@@ -13,7 +12,7 @@ namespace ForexApp.ViewModels
         {
         }
 
-        public override void OnNavigatingTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             this.Symbol = parameters.GetQuoteDetail();
         }

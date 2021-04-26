@@ -16,12 +16,13 @@ using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
 {
-    public class MainViewModel : ViewModelBase, IDisposable
+    public class MainViewModel : ViewModelBase, IDestructible
     {
         private readonly IForexSettings forexSettings;
         private readonly IForexService forexService;
         private readonly INavigationService navigationService;
         private readonly IPageDialogService pageDialogService;
+        private readonly IDeviceService deviceService;
         private readonly ILocalizer localizer;
         private string newQuoteSymbol;
         private bool isBusy;
@@ -35,14 +36,16 @@ namespace ForexApp.ViewModels
             IForexService forexService,
             INavigationService navigationService,
             IPageDialogService pageDialogService,
+            IDeviceService deviceService,
             ILocalizer localizer)
         {
             this.forexSettings = forexSettings;
             this.forexService = forexService;
             this.navigationService = navigationService;
             this.pageDialogService = pageDialogService;
+            this.deviceService = deviceService;
             this.localizer = localizer;
-            this.localizer.CultureInfoChangedEvent += OnCurrentLanguageChanged;
+            this.localizer.CultureInfoChangedEvent += this.OnCurrentLanguageChanged;
 
             this.Quotes = new ObservableCollection<QuoteViewModel>();
         }
@@ -63,12 +66,11 @@ namespace ForexApp.ViewModels
                     this.IsRefreshing = false;
                 });
 
-        public override void OnNavigatingTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            Device.BeginInvokeOnMainThread(() =>
+            this.deviceService.BeginInvokeOnMainThread(() =>
             {
                 this.localizer.SetCultureInfo(new CultureInfo(this.forexSettings.Language));
-                this.CurrentLanguage = localizer.GetCurrentCulture().TwoLetterISOLanguageName;
             });
 
             this.RefreshButtonCommand.Execute(null);
@@ -255,7 +257,7 @@ namespace ForexApp.ViewModels
             this.CurrentLanguage = e.CultureInfo.TwoLetterISOLanguageName;
         }
 
-        public void Dispose()
+        public void Destroy()
         {
             this.localizer.CultureInfoChangedEvent -= this.OnCurrentLanguageChanged;
         }
