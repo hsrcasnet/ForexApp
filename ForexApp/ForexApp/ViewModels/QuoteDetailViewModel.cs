@@ -13,7 +13,7 @@ namespace ForexApp.ViewModels
         {
         }
 
-        public override void OnNavigatingTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             this.Symbol = parameters.GetQuoteDetail();
         }
@@ -21,11 +21,7 @@ namespace ForexApp.ViewModels
         public string Symbol
         {
             get => this.symbol;
-            private set
-            {
-                this.symbol = value;
-                this.OnPropertyChanged(nameof(this.Symbol));
-            }
+            private set => this.SetProperty(ref this.symbol, value);
         }
     }
 }

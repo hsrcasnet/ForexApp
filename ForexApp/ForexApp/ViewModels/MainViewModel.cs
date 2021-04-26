@@ -43,11 +43,7 @@ namespace ForexApp.ViewModels
         public string Title
         {
             get => this.title;
-            set
-            {
-                this.title = value;
-                this.OnPropertyChanged(nameof(this.Title));
-            }
+            private set => this.SetProperty(ref this.title, value);
         }
 
         public ICommand RefreshButtonCommand => new Command(
@@ -66,7 +62,7 @@ namespace ForexApp.ViewModels
                     this.IsRefreshing = false;
                 });
 
-        public override void OnNavigatingTo(INavigationParameters parameters)
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
             this.RefreshButtonCommand.Execute(null);
         }
@@ -88,21 +84,13 @@ namespace ForexApp.ViewModels
         public bool IsBusy
         {
             get => this.isBusy;
-            set
-            {
-                this.isBusy = value;
-                this.OnPropertyChanged(nameof(this.IsBusy));
-            }
+            private set => this.SetProperty(ref this.isBusy, value);
         }
 
         public bool IsRefreshing
         {
             get => this.isRefreshing;
-            set
-            {
-                this.isRefreshing = value;
-                this.OnPropertyChanged(nameof(this.IsRefreshing));
-            }
+            set => this.SetProperty(ref this.isRefreshing, value);
         }
 
         private async Task LoadAndUpdateQuotes(string[] pairs)
@@ -163,7 +151,7 @@ namespace ForexApp.ViewModels
                 this.forexSettings.Symbols = symbols.ToArray();
 
                 this.AddOrUpdateQuote(quoteDto);
-                this.OnPropertyChanged(nameof(this.Quotes));
+                this.RaisePropertyChanged(nameof(this.Quotes));
             }
             else
             {
@@ -179,8 +167,8 @@ namespace ForexApp.ViewModels
             set
             {
                 this.newQuoteSymbol = value?.ToUpperInvariant();
-                this.OnPropertyChanged(nameof(this.NewQuoteSymbol));
-                this.OnPropertyChanged(nameof(this.IsNewQuoteSymbolEnabled));
+                this.RaisePropertyChanged(nameof(this.NewQuoteSymbol));
+                this.RaisePropertyChanged(nameof(this.IsNewQuoteSymbolEnabled));
             }
         }
 
@@ -198,7 +186,7 @@ namespace ForexApp.ViewModels
             set
             {
                 this.quotes = value;
-                this.OnPropertyChanged(nameof(this.Quotes));
+                this.RaisePropertyChanged(nameof(this.Quotes));
             }
         }
 
