@@ -1,5 +1,4 @@
-﻿
-using ForexApp.Helpers;
+﻿using ForexApp.Helpers;
 using ForexApp.Localization;
 using ForexApp.Services;
 using ForexApp.Services.Fakes;
@@ -7,11 +6,11 @@ using ForexApp.ViewModels;
 using ForexApp.Views;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
-
 using Prism;
-using Prism.Autofac;
+using Prism.DryIoc;
 using Prism.Ioc;
 using Strings = ForexApp.Resources.Strings;
+using Xamarin.Forms;
 
 namespace ForexApp
 {
@@ -40,6 +39,7 @@ namespace ForexApp
             containerRegistry.RegisterSingleton(typeof(IForexSettings), typeof(ForexSettings));
 
             // Register views and view models
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainViewModel>(Pages.Main);
             containerRegistry.RegisterForNavigation<QuoteDetailPage, QuoteDetailViewModel>(Pages.QuoteDetail);
 
@@ -57,7 +57,7 @@ namespace ForexApp
         {
             this.InitializeComponent();
 
-            this.NavigationService.NavigateAsync(Pages.Main);
+            this.NavigationService.NavigateAsync($"NavigationPage/{Pages.Main}");
         }
 
         protected override void OnResume()

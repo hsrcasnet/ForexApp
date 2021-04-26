@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
+    x:Class="ForexApp.Views.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
     xmlns:behaviors="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+    xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
     xmlns:localization="clr-namespace:ForexApp.Localization;assembly=ForexApp"
-    x:Class="ForexApp.Views.MainPage">
+    Title="{localization:Translate MainPageTitle}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -14,11 +15,19 @@
             </DataTemplate>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Command="{Binding ChangeCurrentLanguageCommand}"
+            Order="Primary"
+            Priority="1"
+            Text="{Binding CurrentLanguage}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
@@ -26,41 +35,12 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="50" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Text="{localization:Translate MainPageTitle}"
-                        Style="{StaticResource TitleStyle}"
-                        VerticalOptions="FillAndExpand"
-                        VerticalTextAlignment="Center"
-                        HorizontalOptions="FillAndExpand"
-                        HorizontalTextAlignment="Start" />
-
-                    <Button
-                        Grid.Column="1"
-                        Text="{Binding CurrentLanguage}"
-                        Command="{Binding ChangeCurrentLanguageCommand}"
-                        HorizontalOptions="End"
-                        HeightRequest="48"
-                        WidthRequest="48"
-                        BorderWidth="0" />
-                </Grid>
-
                 <ListView
-                    Grid.Row="1"
-                    ItemsSource="{Binding Quotes}"
-                    ItemTemplate="{StaticResource QuoteItemViewCell}"
+                    Grid.Row="0"
                     IsPullToRefreshEnabled="True"
                     IsRefreshing="{Binding IsRefreshing}"
+                    ItemTemplate="{StaticResource QuoteItemViewCell}"
+                    ItemsSource="{Binding Quotes}"
                     RefreshCommand="{Binding RefreshListCommand}"
                     SelectedItem="{Binding SelectedItem}">
 
@@ -69,7 +49,7 @@
                     </ListView.Behaviors>
                 </ListView>
 
-                <Grid Grid.Row="2" Padding="6">
+                <Grid Grid.Row="1" Padding="6">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
@@ -82,8 +62,8 @@
                     <Button
                         Grid.Row="0"
                         Grid.ColumnSpan="2"
-                        Text="{localization:Translate RefreshButtonText}"
-                        Command="{Binding RefreshButtonCommand}" />
+                        Command="{Binding RefreshButtonCommand}"
+                        Text="{localization:Translate RefreshButtonText}" />
 
                     <Entry
                         Grid.Row="1"
@@ -95,24 +75,22 @@
                         x:Name="AddButton"
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="{localization:Translate AddSymbolButtonText}"
                         IsEnabled="{Binding IsNewQuoteSymbolEnabled}"
-                        Command="{Binding AddSymbolCommand}" />
+                        Text="{localization:Translate AddSymbolButtonText}" />
                 </Grid>
             </Grid>
 
             <ActivityIndicator
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"
-                Color="Black"
+                IsRunning="{Binding IsBusy}"
                 IsVisible="{Binding IsBusy}"
-                IsRunning="{Binding IsBusy}">
+                Color="Black"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand">
                 <ActivityIndicator.WidthRequest>
                     <OnPlatform
                         x:TypeArguments="x:Double"
-                        iOS="24"
                         Android="100"
-                        WinPhone="400" />
+                        iOS="24" />
                 </ActivityIndicator.WidthRequest>
             </ActivityIndicator>
 

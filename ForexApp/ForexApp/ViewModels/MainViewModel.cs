@@ -68,6 +68,7 @@ namespace ForexApp.ViewModels
             Device.BeginInvokeOnMainThread(() =>
             {
                 this.localizer.SetCultureInfo(new CultureInfo(this.forexSettings.Language));
+                this.CurrentLanguage = localizer.GetCurrentCulture().TwoLetterISOLanguageName;
             });
 
             this.RefreshButtonCommand.Execute(null);
@@ -222,8 +223,8 @@ namespace ForexApp.ViewModels
 
         public string CurrentLanguage
         {
-            get { return this.currentLanguage; }
-            set
+            get => this.currentLanguage;
+            private set
             {
                 this.currentLanguage = value;
                 this.OnPropertyChanged(nameof(this.CurrentLanguage));
