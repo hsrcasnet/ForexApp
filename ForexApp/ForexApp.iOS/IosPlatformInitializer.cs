@@ -7,6 +7,7 @@ namespace ForexApp.iOS
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // TODO: Register platform-specific services here
         }
     }
 }

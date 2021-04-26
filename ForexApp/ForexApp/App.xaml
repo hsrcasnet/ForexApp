@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<autofac:PrismApplication
+<prism:PrismApplication
     x:Class="ForexApp.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:autofac="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
     xmlns:converters="clr-namespace:ForexApp.Converters;assembly=ForexApp"
-    xmlns:extensions="clr-namespace:ForexApp.Extensions;assembly=ForexApp">
+    xmlns:extensions="clr-namespace:ForexApp.Extensions;assembly=ForexApp"
+    xmlns:prism="http://prismlibrary.com">
     <Application.Resources>
         <ResourceDictionary>
             <!--  Colors  -->
@@ -44,4 +44,4 @@
             <converters:SymbolToImageConverter x:Key="SymbolToImageConverter" />
         </ResourceDictionary>
     </Application.Resources>
-</autofac:PrismApplication>
+</prism:PrismApplication>

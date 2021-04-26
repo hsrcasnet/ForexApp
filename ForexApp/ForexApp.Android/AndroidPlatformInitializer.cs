@@ -7,6 +7,7 @@ namespace ForexApp.Droid
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            // TODO: Register platform-specific services here
         }
     }
 }

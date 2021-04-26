@@ -1,15 +1,12 @@
-﻿
-using ForexApp.Helpers;
+﻿using ForexApp.Helpers;
 using ForexApp.Services;
 using ForexApp.Services.Fakes;
 using ForexApp.ViewModels;
 using ForexApp.Views;
-
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
-
 using Prism;
-using Prism.Autofac;
+using Prism.DryIoc;
 using Prism.Ioc;
 using Xamarin.Forms;
 
