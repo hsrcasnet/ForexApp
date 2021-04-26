@@ -1,10 +1,9 @@
-﻿using Prism.Navigation;
-
-using Xamarin.Forms;
+﻿using Prism.Mvvm;
+using Prism.Navigation;
 
 namespace ForexApp.ViewModels
 {
-    public class ViewModelBase : BindableObject, INavigationAware
+    public class ViewModelBase : BindableBase, INavigationAware
     {
         public virtual void OnNavigatedFrom(INavigationParameters parameters)
         {

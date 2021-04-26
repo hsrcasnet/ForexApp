@@ -20,11 +20,7 @@ namespace ForexApp.ViewModels
         public string Symbol
         {
             get => this.symbol;
-            private set
-            {
-                this.symbol = value;
-                this.OnPropertyChanged(nameof(this.Symbol));
-            }
+            private set => this.SetProperty(ref this.symbol, value);
         }
     }
 }

@@ -93,21 +93,13 @@ namespace ForexApp.ViewModels
         public bool IsBusy
         {
             get => this.isBusy;
-            set
-            {
-                this.isBusy = value;
-                this.OnPropertyChanged(nameof(this.IsBusy));
-            }
+            private set => this.SetProperty(ref this.isBusy, value);
         }
 
         public bool IsRefreshing
         {
             get => this.isRefreshing;
-            set
-            {
-                this.isRefreshing = value;
-                this.OnPropertyChanged(nameof(this.IsRefreshing));
-            }
+            set => this.SetProperty(ref this.isRefreshing, value);
         }
 
         private async Task LoadAndUpdateQuotes(string[] pairs)
@@ -168,7 +160,7 @@ namespace ForexApp.ViewModels
                 this.forexSettings.Symbols = symbols.ToArray();
 
                 this.AddOrUpdateQuote(quoteDto);
-                this.OnPropertyChanged(nameof(this.Quotes));
+                this.RaisePropertyChanged(nameof(this.Quotes));
             }
             else
             {
@@ -184,8 +176,8 @@ namespace ForexApp.ViewModels
             set
             {
                 this.newQuoteSymbol = value?.ToUpperInvariant();
-                this.OnPropertyChanged(nameof(this.NewQuoteSymbol));
-                this.OnPropertyChanged(nameof(this.IsNewQuoteSymbolEnabled));
+                this.RaisePropertyChanged(nameof(this.NewQuoteSymbol));
+                this.RaisePropertyChanged(nameof(this.IsNewQuoteSymbolEnabled));
             }
         }
 
@@ -203,7 +195,7 @@ namespace ForexApp.ViewModels
             set
             {
                 this.quotes = value;
-                this.OnPropertyChanged(nameof(this.Quotes));
+                this.RaisePropertyChanged(nameof(this.Quotes));
             }
         }
 
@@ -226,11 +218,7 @@ namespace ForexApp.ViewModels
         public string CurrentLanguage
         {
             get => this.currentLanguage;
-            private set
-            {
-                this.currentLanguage = value;
-                this.OnPropertyChanged(nameof(this.CurrentLanguage));
-            }
+            private set => this.SetProperty(ref this.currentLanguage, value);
         }
 
         public ICommand ChangeCurrentLanguageCommand => new Command(this.ToggleCurrentLanguage);
