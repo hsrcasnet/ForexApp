@@ -19,7 +19,6 @@
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
@@ -27,25 +26,15 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Label
-                Grid.Row="0"
-                BackgroundColor="LightBlue"
-                FontAttributes="Bold"
-                Text="Enter FX pairs below (e.g. CHF_EUR or EUR_CHF)"
-                HorizontalOptions="FillAndExpand"
-                HorizontalTextAlignment="Center"
-                VerticalOptions="FillAndExpand"
-                VerticalTextAlignment="Center" />
-
             <ListView
-                Grid.Row="1"
+                Grid.Row="0"
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing}"
                 ItemTemplate="{StaticResource QuoteItemViewCell}"
                 ItemsSource="{Binding Quotes}"
                 RefreshCommand="{Binding RefreshListCommand}" />
 
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />

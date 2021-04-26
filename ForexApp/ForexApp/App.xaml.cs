@@ -9,7 +9,7 @@ namespace ForexApp
         {
             this.InitializeComponent();
 
-            this.MainPage = new MainPage();
+            this.MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
