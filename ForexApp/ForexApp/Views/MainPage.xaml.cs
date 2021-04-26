@@ -9,7 +9,8 @@ namespace ForexApp.Views
         public MainPage()
         {
             this.InitializeComponent();
-            On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
+            // this.BindingContext --> automatically set by DI container
+            this.On<Xamarin.Forms.PlatformConfiguration.iOS>().SetUseSafeArea(true);
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <autofac:PrismApplication
+    x:Class="ForexApp.App"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:autofac="clr-namespace:Prism.Autofac;assembly=Prism.Autofac.Forms"
     xmlns:converters="clr-namespace:ForexApp.Converters;assembly=ForexApp"
-    xmlns:extensions="clr-namespace:ForexApp.Extensions;assembly=ForexApp"
-    x:Class="ForexApp.App">
+    xmlns:extensions="clr-namespace:ForexApp.Extensions;assembly=ForexApp">
     <Application.Resources>
         <ResourceDictionary>
             <!--  Colors  -->
@@ -17,7 +17,7 @@
                 <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
             </Style>
 
-            <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}" />
+            <Style BasedOn="{StaticResource LabelStyle}" TargetType="Label" />
 
             <Style x:Key="TitleStyle" TargetType="Label">
                 <Setter Property="FontAttributes" Value="Bold" />
@@ -33,13 +33,13 @@
             <!--  Converters  -->
             <converters:PriceToColorConverter
                 x:Key="PriceToColorConverter"
-                PositiveColor="#99ff99"
-                NegativeColor="#ff9999" />
+                NegativeColor="#ff9999"
+                PositiveColor="#99ff99" />
 
             <converters:PriceToImageConverter
                 x:Key="PriceToImageConverter"
-                PositiveImage="{extensions:ImageResource ForexApp.Resources.Images.arrow-top-right.png}"
-                NegativeImage="{extensions:ImageResource ForexApp.Resources.Images.arrow-bottom-right.png}" />
+                NegativeImage="{extensions:ImageResource ForexApp.Resources.Images.arrow-bottom-right.png}"
+                PositiveImage="{extensions:ImageResource ForexApp.Resources.Images.arrow-top-right.png}" />
 
             <converters:SymbolToImageConverter x:Key="SymbolToImageConverter" />
         </ResourceDictionary>
