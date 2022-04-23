@@ -32,7 +32,7 @@
                     ItemTemplate="{StaticResource QuoteItemViewCell}"
                     ItemsSource="{Binding Quotes}"
                     RefreshCommand="{Binding RefreshListCommand}"
-                    SelectedItem="{Binding SelectedItem}">
+                    SelectedItem="{Binding SelectedQuote}">
 
                     <ListView.Behaviors>
                         <behaviors:EventToCommandBehavior Command="{Binding SelectQuoteCommand}" EventName="ItemTapped" />
@@ -72,11 +72,11 @@
             </Grid>
 
             <ActivityIndicator
+                HorizontalOptions="CenterAndExpand"
                 IsRunning="{Binding IsBusy}"
                 IsVisible="{Binding IsBusy}"
-                Color="Black"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand">
+                VerticalOptions="CenterAndExpand"
+                Color="Black">
                 <ActivityIndicator.WidthRequest>
                     <OnPlatform
                         x:TypeArguments="x:Double"

@@ -197,12 +197,12 @@ namespace ForexApp.ViewModels
             get { return this.selectQuoteCommand ?? (this.selectQuoteCommand = new Command(async () => await this.OnSelectQuote())); }
         }
 
-        public QuoteViewModel SelectedItem { get; set; }
+        public QuoteViewModel SelectedQuote { get; set; }
 
         private async Task OnSelectQuote()
         {
             var navigationParameter = new NavigationParameters();
-            navigationParameter.AddQuoteDetail(this.SelectedItem.Symbol);
+            navigationParameter.AddQuoteDetail(this.SelectedQuote.Symbol);
             await this.navigationService.NavigateAsync(Pages.QuoteDetail, navigationParameter);
         }
     }
