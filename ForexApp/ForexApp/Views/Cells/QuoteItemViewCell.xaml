@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ViewCell
+    x:Class="ForexApp.Views.Cells.QuoteItemViewCell"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="ForexApp.Views.Cells.QuoteItemViewCell">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ViewCell.ContextActions>
         <MenuItem
-            Text="Delete"
             Command="{Binding DeleteCommand}"
-            IsDestructive="True" />
+            IsDestructive="True"
+            Text="Delete" />
     </ViewCell.ContextActions>
     <ViewCell.View>
-        <Grid ColumnSpacing="6" Padding="6">
+        <Grid Padding="6" ColumnSpacing="6">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
@@ -22,36 +22,36 @@
 
             <Image
                 Grid.Column="0"
-                Source="{Binding Symbol, Mode=OneWay, Converter={StaticResource SymbolToImageConverter}, ConverterParameter=0}"
                 Aspect="AspectFit"
                 HeightRequest="24"
+                Source="{Binding Symbol, Mode=OneWay, Converter={StaticResource SymbolToImageConverter}, ConverterParameter=0}"
                 WidthRequest="24" />
 
             <Image
                 Grid.Column="1"
-                Source="{Binding Symbol, Mode=OneWay, Converter={StaticResource SymbolToImageConverter}, ConverterParameter=1}"
                 Aspect="AspectFit"
                 HeightRequest="24"
+                Source="{Binding Symbol, Mode=OneWay, Converter={StaticResource SymbolToImageConverter}, ConverterParameter=1}"
                 WidthRequest="24" />
 
             <Label
                 Grid.Column="2"
-                Text="{Binding Symbol, Mode=OneWay}"
                 FontAttributes="Bold"
+                Text="{Binding Symbol, Mode=OneWay}"
                 VerticalOptions="CenterAndExpand" />
 
             <Label
                 Grid.Column="3"
-                Text="{Binding Price, StringFormat='{0:0.00}'}"
-                VerticalOptions="CenterAndExpand"
+                BackgroundColor="{Binding ., Mode=OneWay, Converter={StaticResource PriceToColorConverter}}"
                 HorizontalOptions="EndAndExpand"
-                BackgroundColor="{Binding ., Mode=OneWay, Converter={StaticResource PriceToColorConverter}}" />
+                Text="{Binding Price, StringFormat='{0:0.00}'}"
+                VerticalOptions="CenterAndExpand" />
 
             <Image
                 Grid.Column="4"
-                Source="{Binding ., Mode=OneWay, Converter={StaticResource PriceToImageConverter}, ConverterParameter=1}"
                 Aspect="AspectFit"
                 HeightRequest="20"
+                Source="{Binding ., Mode=OneWay, Converter={StaticResource PriceToImageConverter}, ConverterParameter=1}"
                 WidthRequest="20" />
 
             <Label
