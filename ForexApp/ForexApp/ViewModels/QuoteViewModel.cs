@@ -1,11 +1,12 @@
-using ForexApp.Model;
 using System;
 using System.Windows.Input;
+using ForexApp.Model;
+using Prism.Mvvm;
 using Xamarin.Forms;
 
 namespace ForexApp.ViewModels
 {
-    public class QuoteViewModel : BindableObject
+    public class QuoteViewModel : BindableBase
     {
         private readonly Action<QuoteViewModel> deleteAction;
         private string symbol;
@@ -21,41 +22,25 @@ namespace ForexApp.ViewModels
 
         public string Symbol
         {
-            get
-            {
-                return this.symbol;
-            }
-            set
-            {
-                this.symbol = value;
-                this.OnPropertyChanged(nameof(this.Symbol));
-            }
+            get => this.symbol;
+            private set => this.SetProperty(ref this.symbol, value);
         }
 
         public decimal Price
         {
-            get
-            {
-                return this.price;
-            }
-            set
-            {
-                this.price = value;
-                this.OnPropertyChanged(nameof(this.Price));
-            }
+            get => this.price;
+            private set => this.SetProperty(ref this.price, value);
         }
 
         public decimal? LastPrice
         {
-            get
+            get => this.lastPrice;
+            private set
             {
-                return this.lastPrice;
-            }
-            set
-            {
-                this.lastPrice = value;
-                this.OnPropertyChanged(nameof(this.LastPrice));
-                this.OnPropertyChanged(nameof(this.Difference));
+                if (this.SetProperty(ref this.lastPrice, value))
+                {
+                    this.RaisePropertyChanged(nameof(this.Difference));
+                }
             }
         }
 
