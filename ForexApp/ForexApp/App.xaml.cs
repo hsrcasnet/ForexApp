@@ -18,16 +18,6 @@ namespace ForexApp
         {
         }
 
-        protected override void OnStart()
-        {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             // Register services
@@ -47,6 +37,16 @@ namespace ForexApp
             this.InitializeComponent();
 
             this.NavigationService.NavigateAsync($"NavigationPage/{Pages.Main}");
+        }
+
+        protected override void OnStart()
+        {
+            // Handle when your app starts
+        }
+
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
         }
 
         protected override void OnResume()
