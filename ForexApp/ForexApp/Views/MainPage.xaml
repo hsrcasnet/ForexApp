@@ -4,12 +4,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:cells="clr-namespace:ForexApp.Views.Cells;assembly=ForexApp"
-    xmlns:converters="clr-namespace:ForexApp.Converters;assembly=ForexApp"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="True"
     Title="{Binding Title}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converters:StringNullOrEmptyToBoolConverter x:Key="StringNullOrEmptyToBoolConverter" />
             <DataTemplate x:Key="QuoteItemViewCell">
                 <cells:QuoteItemViewCell />
             </DataTemplate>
