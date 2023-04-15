@@ -22,7 +22,7 @@ namespace ForexApp.Services
                 quoteDtos.Add(dto);
             }
 
-            await Task.Delay(1000);
+            await Task.Delay(3000);
 
             return quoteDtos;
         }

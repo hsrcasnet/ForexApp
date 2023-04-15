@@ -88,7 +88,7 @@ namespace ForexApp.ViewModels
             catch (Exception ex)
             {
                 // TODO: Log exception here
-                // TODO: Inform user about the error
+                // TODO: Inform user about the error using a dialog
             }
         }
 
@@ -120,9 +120,11 @@ namespace ForexApp.ViewModels
             }
         }
 
-        public ICommand AddSymbolCommand => new Command(execute: async () => await this.AddSymbol(), () => this.IsNewQuoteSymbolEnabled);
+        public ICommand AddSymbolCommand => new Command(
+            execute: async () => await this.AddSymbolAsync(),
+            canExecute: () => this.IsNewQuoteSymbolEnabled);
 
-        private async Task AddSymbol()
+        private async Task AddSymbolAsync()
         {
             try
             {

@@ -24,6 +24,7 @@ namespace ForexApp.Services
             var apiKey = this.forexServiceConfiguration.ApiKey;
             var pairsString = string.Join(",", pairs);
             var uri = $"https://free.currconv.com/api/v7/convert?q={pairsString}&apiKey={apiKey}";
+
             var httpResponseMessage = await this.httpClient.GetAsync(uri);
             httpResponseMessage.EnsureSuccessStatusCode();
 
