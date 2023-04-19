@@ -3,12 +3,12 @@
     x:Class="ForexApp.Views.QuoteDetailPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="{Binding Symbol, StringFormat='Detail Page: {0}'}">
+    Title="{Binding Title}">
     <ContentPage.Content>
         <StackLayout>
             <Label
-                Text="{Binding Symbol, Mode=OneWay}"
                 HorizontalOptions="CenterAndExpand"
+                Text="{Binding Symbol, Mode=OneWay}"
                 VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>

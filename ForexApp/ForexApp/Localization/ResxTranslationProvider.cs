@@ -28,6 +28,10 @@ namespace ForexApp.Localization
             }
         }
 
+        private ResxTranslationProvider()
+        {
+        }
+
         public static void Init(ResourceManager resourceManager, Func<ILocalizer> localizerFunction)
         {
             localizer = new Lazy<ILocalizer>(localizerFunction, LazyThreadSafetyMode.PublicationOnly);

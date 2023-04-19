@@ -37,6 +37,7 @@ namespace ForexApp
             containerRegistry.RegisterSingleton(typeof(IForexService), typeof(ForexServiceMock));
             containerRegistry.RegisterInstance(typeof(ISettings), CrossSettings.Current);
             containerRegistry.RegisterSingleton(typeof(IForexSettings), typeof(ForexSettings));
+            containerRegistry.RegisterInstance(typeof(ITranslationProvider), ResxTranslationProvider.Instance);
 
             // Register views and view models
             containerRegistry.RegisterForNavigation<NavigationPage>();
@@ -49,7 +50,7 @@ namespace ForexApp
 
             TranslateExtension.Init(
                 () => base.Container.Resolve<ILocalizer>(),
-                () => new ResxTranslationProvider());
+                () => ResxTranslationProvider.Instance);
         }
 
 
