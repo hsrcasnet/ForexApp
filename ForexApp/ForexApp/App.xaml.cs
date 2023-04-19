@@ -50,7 +50,7 @@ namespace ForexApp
 
             TranslateExtension.Init(
                 () => base.Container.Resolve<ILocalizer>(),
-                () => ResxTranslationProvider.Instance);
+                () => base.Container.Resolve<ITranslationProvider>());
         }
 
 
