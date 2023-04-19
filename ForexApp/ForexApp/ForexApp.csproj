@@ -10,8 +10,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="MultilingualResources\ForexApp.de.xlf" />
-    <None Remove="MultilingualResources\ForexApp.en.xlf" />
     <None Remove="Resources\Images\arrow-bottom-right.png" />
     <None Remove="Resources\Images\arrow-top-right.png" />
     <None Remove="Resources\Images\currency-chf.png" />
@@ -58,8 +56,4 @@
   	<TranslationReport Condition="'$(Configuration)' == 'Release'">true</TranslationReport>
   	<SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
   </PropertyGroup>
-  <ItemGroup>
-    <XliffResource Include="MultilingualResources\ForexApp.de.xlf" />
-    <XliffResource Include="MultilingualResources\ForexApp.en.xlf" />
-  </ItemGroup>
 </Project>

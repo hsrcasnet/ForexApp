@@ -127,7 +127,7 @@
     <value>Welcome to ForexApp</value>
   </data>
   <data name="QuoteDetailPageTitle" xml:space="preserve">
-    <value>Quote Detail for Symbol {0}</value>
+    <value>Currency Pair {0}</value>
   </data>
   <data name="RefreshButtonText" xml:space="preserve">
     <value>Refresh</value>

@@ -19,7 +19,7 @@
           <target state="final">Welcome to ForexApp</target>
         </trans-unit>
         <trans-unit id="QuoteDetailPageTitle" translate="yes" xml:space="preserve">
-          <source>Quote Detail for Symbol {0}</source>
+          <source>Currency Pair {0}</source>
           <target state="final">Quote Detail for Symbol {0}</target>
         </trans-unit>
         <trans-unit id="RefreshButtonText" translate="yes" xml:space="preserve">

@@ -88,7 +88,7 @@ namespace ForexApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Quote Detail for Symbol {0}.
+        ///   Looks up a localized string similar to Currency Pair {0}.
         /// </summary>
         public static string QuoteDetailPageTitle {
             get {

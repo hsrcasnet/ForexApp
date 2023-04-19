@@ -8,23 +8,23 @@
       <group id="FOREXAPP/RESOURCES/STRINGS.RESX" datatype="resx">
         <trans-unit id="AddSymbolButtonText" translate="yes" xml:space="preserve">
           <source>Add Symbol</source>
-          <target state="final">Symbol hinzufügen</target>
+          <target state="translated">Symbol hinzufügen</target>
         </trans-unit>
         <trans-unit id="AddSymbolPlaceholderText" translate="yes" xml:space="preserve">
           <source>(e.g. CHF_EUR or EUR_CHF)</source>
-          <target state="final">(z.B. CHF_EUR oder EUR_CHF)</target>
+          <target state="translated">(z.B. CHF_EUR oder EUR_CHF)</target>
         </trans-unit>
         <trans-unit id="MainPageTitle" translate="yes" xml:space="preserve">
           <source>Welcome to ForexApp</source>
-          <target state="final">Willkommen bei ForexApp</target>
+          <target state="translated">Willkommen bei ForexApp</target>
         </trans-unit>
         <trans-unit id="QuoteDetailPageTitle" translate="yes" xml:space="preserve">
-          <source>Quote Detail for Symbol {0}</source>
-          <target state="final">Währungspaar {0}</target>
+          <source>Currency Pair {0}</source>
+          <target state="translated">Währungspaar {0}</target>
         </trans-unit>
         <trans-unit id="RefreshButtonText" translate="yes" xml:space="preserve">
           <source>Refresh</source>
-          <target state="final">Aktualisieren</target>
+          <target state="translated">Aktualisieren</target>
         </trans-unit>
       </group>
     </body>
