@@ -13,18 +13,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddSymbolButtonText" xml:space="preserve">
-    <value>Symbol hinzufügen</value>
+    <value>Add Symbol</value>
   </data>
   <data name="AddSymbolPlaceholderText" xml:space="preserve">
-    <value>(z.B. CHF_EUR oder EUR_CHF)</value>
+    <value>(e.g. CHF_EUR or EUR_CHF)</value>
   </data>
   <data name="MainPageTitle" xml:space="preserve">
-    <value>Willkommen bei ForexApp</value>
+    <value>Welcome to ForexApp</value>
   </data>
   <data name="QuoteDetailPageTitle" xml:space="preserve">
-    <value>Währungspaar {0}</value>
+    <value>Quote Detail for Symbol {0}</value>
   </data>
   <data name="RefreshButtonText" xml:space="preserve">
-    <value>Aktualisieren</value>
+    <value>Refresh</value>
   </data>
 </root>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="sv" target-language="en" original="FOREXAPP/RESOURCES/STRINGS.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="1.0.0.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="FOREXAPP/RESOURCES/STRINGS.RESX" datatype="resx">
+        <trans-unit id="AddSymbolButtonText" translate="yes" xml:space="preserve">
+          <source>Add Symbol</source>
+          <target state="final">Add Symbol</target>
+        </trans-unit>
+        <trans-unit id="AddSymbolPlaceholderText" translate="yes" xml:space="preserve">
+          <source>(e.g. CHF_EUR or EUR_CHF)</source>
+          <target state="final">(e.g. CHF_EUR or EUR_CHF)</target>
+        </trans-unit>
+        <trans-unit id="MainPageTitle" translate="yes" xml:space="preserve">
+          <source>Welcome to ForexApp</source>
+          <target state="final">Welcome to ForexApp</target>
+        </trans-unit>
+        <trans-unit id="QuoteDetailPageTitle" translate="yes" xml:space="preserve">
+          <source>Quote Detail for Symbol {0}</source>
+          <target state="final">Quote Detail for Symbol {0}</target>
+        </trans-unit>
+        <trans-unit id="RefreshButtonText" translate="yes" xml:space="preserve">
+          <source>Refresh</source>
+          <target state="final">Refresh</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

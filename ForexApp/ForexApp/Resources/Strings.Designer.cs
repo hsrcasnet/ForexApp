@@ -88,6 +88,15 @@ namespace ForexApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quote Detail for Symbol {0}.
+        /// </summary>
+        public static string QuoteDetailPageTitle {
+            get {
+                return ResourceManager.GetString("QuoteDetailPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Refresh.
         /// </summary>
         public static string RefreshButtonText {
